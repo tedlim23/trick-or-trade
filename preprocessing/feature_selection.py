@@ -1,6 +1,5 @@
 import pandas as pd
 from sklearn.preprocessing import Normalizer, StandardScaler, RobustScaler, MinMaxScaler
-from sklearn.preprocessing import Normalizer, StandardScaler, RobustScaler, MinMaxScaler
 from scipy.stats import levene, ttest_ind
 
 # 스케일링
