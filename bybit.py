@@ -1,10 +1,10 @@
 import time
-
+import json
 from pybit import usdt_perpetual
 from pprint import pprint
-from dependencies import get_config
 import datetime
 from decimal import *
+import utils
 
 # 수수료: 테이커: 0.06%, 메이커: 0.01%
 
@@ -41,6 +41,15 @@ class BybitApi:
             'bids': bids,
             'asks': asks,
         }
+    
+    def get_kline_sample(self, symbol="BTCUSDT") -> dict:
+        data = self.api.query_kline(from_time = utils.date_to_timestamp("20/03/20"), symbol=symbol, interval=1, limit=200)["result"]
+        return data
+
+    def get_kline(self, timestamp, symbol="BTCUSDT") -> dict:
+        data = self.api.query_kline(from_time = timestamp, symbol=symbol, interval=1, limit=200)["result"]
+        return data
+        
 
     def get_best_bid_ask(self, symbol='BTCUSDT') -> dict:
         orderbook = self.get_orderbook(symbol)
